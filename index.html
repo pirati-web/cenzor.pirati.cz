@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>Cenzor Babiš</title>
+    <style>
+    	.starthidden {
+		   display: none;
+		}
+		p {font-size: 150%;}
+    </style>
+</head>
+<body>
+	<div class="starthidden" id="yes">
+		<h1>Hazardu se vám zachtělo, holoto?</h1>
+		<img src="http://blbec-roku.cz/babis1.jpg">
+		<p>Připojujete se z České republiky, máte smůlu.</p>
+	</div>
+	<div class="starthidden" id="no">
+		<p>Přicházíte ze země, kde české zákony neplatí. <br><br>Je libo ruletu, poker, něco nahatého?</p>
+		<p><img src="http://blbec-roku.cz/big-smiley-001.gif"></p>
+	</div>
+	<div class="starthidden" id="fail">
+		<p>Nepodařilo se spojit se službou na zjištění země připojení (<a href="http://ipinfo.io/" target="_blank">http://ipinfo.io/</a>), nejspíš byl překročen denní limit. Zkustě to prosím zítra.</p>
+	</div>
+
+	<footer><hr>Pirátská strana, 2016, všechna práva vyhlazena (CopyLeft).</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+	<script>
+$( document ).ready(function() {
+	$.get("http://ipinfo.io/", function(response) {
+		if(response.country == "CZ") {
+	  	$( "#yes" ).show();
+	  }
+	  else {
+	  	$( "#no" ).show();
+	  }
+	}, "jsonp").fail(function() {
+		$( "#fail" ).show();
+	});
+});
+	</script>
+</body>
+</html>
